@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dao;
+package canteen.bll;
 
 /**
  *
  * @author Admin
  */
-public class BillMasterDAO {
+public class OrderDetailBLL {
     
 }

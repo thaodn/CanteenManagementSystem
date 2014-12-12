@@ -1,4 +1,4 @@
-package utility;
+package canteen.common.utility;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
