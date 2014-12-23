@@ -6,7 +6,6 @@
 package canteen.dal;
 
 import canteen.common.bean.OrderDetail;
-import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -16,7 +15,7 @@ import java.util.List;
 public class OrderDetailDAO extends AbstractDAO<OrderDetail> {
 
     @Override
-    public Object getById(int id) throws SQLException, ClassNotFoundException {
+    public OrderDetail getById(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -26,18 +25,17 @@ public class OrderDetailDAO extends AbstractDAO<OrderDetail> {
     }
 
     @Override
-    public void create(Object t) {
+    public void create(OrderDetail obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void update(Object t) {
+    public void update(OrderDetail obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void delete(Object t) {
+    public void delete(OrderDetail obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
 }

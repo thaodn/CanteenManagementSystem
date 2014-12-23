@@ -31,7 +31,7 @@ public class DBUltility {
         Properties p = new Properties();
 
         try {
-            p.load(new FileInputStream("config.properties"));
+            p.load(new FileInputStream("Config.properties"));
 
             url = p.getProperty("url");
             port = p.getProperty("port");

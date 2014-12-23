@@ -6,7 +6,6 @@
 package canteen.dal;
 
 import canteen.common.bean.OrderMaster;
-import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -16,7 +15,7 @@ import java.util.List;
 public class OrderMasterDAO extends AbstractDAO<OrderMaster> {
 
     @Override
-    public Object getById(int id) throws SQLException, ClassNotFoundException {
+    public OrderMaster getById(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -26,18 +25,17 @@ public class OrderMasterDAO extends AbstractDAO<OrderMaster> {
     }
 
     @Override
-    public void create(Object t) {
+    public void create(OrderMaster obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void update(Object t) {
+    public void update(OrderMaster obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void delete(Object t) {
+    public void delete(OrderMaster obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
 }

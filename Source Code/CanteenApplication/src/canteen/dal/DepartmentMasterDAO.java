@@ -6,7 +6,6 @@
 package canteen.dal;
 
 import canteen.common.bean.DepartmentMaster;
-import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -16,28 +15,27 @@ import java.util.List;
 public class DepartmentMasterDAO extends AbstractDAO<DepartmentMaster> {
 
     @Override
-    public Object getById(int id) throws SQLException, ClassNotFoundException {
+    public DepartmentMaster getById(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List getAll() {
+    public List<DepartmentMaster> getAll() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void create(Object t) {
+    public void create(DepartmentMaster obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void update(Object t) {
+    public void update(DepartmentMaster obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void delete(Object t) {
+    public void delete(DepartmentMaster obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
 }

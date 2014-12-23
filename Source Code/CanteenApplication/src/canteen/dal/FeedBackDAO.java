@@ -6,7 +6,6 @@
 package canteen.dal;
 
 import canteen.common.bean.FeedBack;
-import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -16,28 +15,27 @@ import java.util.List;
 public class FeedBackDAO extends AbstractDAO<FeedBack> {
 
     @Override
-    public Object getById(int id) throws SQLException, ClassNotFoundException {
+    public FeedBack getById(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List getAll() {
+    public List<FeedBack> getAll() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void create(Object t) {
+    public void create(FeedBack obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void update(Object t) {
+    public void update(FeedBack obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void delete(Object t) {
+    public void delete(FeedBack obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
 }

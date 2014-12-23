@@ -5,11 +5,22 @@
  */
 package canteen.dal;
 
+import java.util.List;
+
 /**
  *
  * @author Admin
  * @param <T>
  */
-public abstract class AbstractDAO<T extends Object> implements IDAO<T> {
-    // Abstract Data Access Object
+public interface IDAO<T extends Object> {
+
+    T getById(int id);
+
+    List<T> getAll();
+
+    void create(T obj);
+
+    void update(T obj);
+
+    void delete(T obj);
 }
