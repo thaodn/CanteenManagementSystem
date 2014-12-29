@@ -25,15 +25,15 @@ public class DepartmentMasterBLL {
         return objDAO.getAll();
     }
 
-    public static void create(DepartmentMaster obj) {
-        objDAO.create(obj);
+    public static boolean create(DepartmentMaster obj) {
+        return objDAO.create(obj);
     }
 
-    public static void update(DepartmentMaster obj) {
-        objDAO.update(obj);
+    public static boolean update(DepartmentMaster obj) {
+        return objDAO.update(obj);
     }
 
-    public static void delete(DepartmentMaster obj) {
-        objDAO.delete(obj);
+    public static boolean delete(DepartmentMaster obj) {
+        return objDAO.delete(obj);
     }
 }

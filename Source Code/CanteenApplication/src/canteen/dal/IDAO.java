@@ -18,9 +18,9 @@ public interface IDAO<T extends Object> {
 
     List<T> getAll();
 
-    void create(T obj);
+    boolean create(T obj);
 
-    void update(T obj);
+    boolean update(T obj);
 
-    void delete(T obj);
+    boolean delete(T obj);
 }

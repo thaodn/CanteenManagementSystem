@@ -5,6 +5,9 @@
  */
 package canteen.presentation;
 
+import canteen.common.bean.EmployeeMaster;
+import canteen.common.bean.Session;
+
 /**
  *
  * @author Admin
@@ -17,10 +20,14 @@ public class MainGUI extends javax.swing.JFrame {
     public MainGUI() {
         initComponents();
 
+        // Add Session
+        Session.employee = new EmployeeMaster();
+        Session.employee.setRole(1);
+
         // Add new pannel
-        OrderPanel pnlOrder = new OrderPanel();
-        pnlOrder.setName("Orders");
-        tpnMainUI.add(pnlOrder);
+        BillPanel pnlBill = new BillPanel();
+        pnlBill.setName("Bill");
+        tpnMainUI.add(pnlBill);
     }
 
     /**
@@ -37,7 +44,7 @@ public class MainGUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Canteen Management System");
         setName("frmMainGui"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(800, 600));
+        setPreferredSize(new java.awt.Dimension(920, 680));
 
         tpnMainUI.setToolTipText("");
 

@@ -25,17 +25,17 @@ public class ItemTypeMasterDAO extends AbstractDAO<ItemTypeMaster> {
     }
 
     @Override
-    public void create(ItemTypeMaster obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean create(ItemTypeMaster obj) {
+        return false;
     }
 
     @Override
-    public void update(ItemTypeMaster obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean update(ItemTypeMaster obj) {
+        return false;
     }
 
     @Override
-    public void delete(ItemTypeMaster obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean delete(ItemTypeMaster obj) {
+        return false;
     }
 }

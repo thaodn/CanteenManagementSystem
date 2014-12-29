@@ -25,17 +25,17 @@ public class DepartmentMasterDAO extends AbstractDAO<DepartmentMaster> {
     }
 
     @Override
-    public void create(DepartmentMaster obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean create(DepartmentMaster obj) {
+        return false;
     }
 
     @Override
-    public void update(DepartmentMaster obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean update(DepartmentMaster obj) {
+        return false;
     }
 
     @Override
-    public void delete(DepartmentMaster obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean delete(DepartmentMaster obj) {
+        return false;
     }
 }

@@ -25,15 +25,15 @@ public class FeedBackBLL {
         return objDAO.getAll();
     }
 
-    public static void create(FeedBack obj) {
-        objDAO.create(obj);
+    public static boolean create(FeedBack obj) {
+        return objDAO.create(obj);
     }
 
-    public static void update(FeedBack obj) {
-        objDAO.update(obj);
+    public static boolean update(FeedBack obj) {
+        return objDAO.update(obj);
     }
 
-    public static void delete(FeedBack obj) {
-        objDAO.delete(obj);
+    public static boolean delete(FeedBack obj) {
+        return objDAO.delete(obj);
     }
 }

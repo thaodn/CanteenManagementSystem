@@ -25,17 +25,17 @@ public class EmployeeMasterDAO extends AbstractDAO<EmployeeMaster> {
     }
 
     @Override
-    public void create(EmployeeMaster obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean create(EmployeeMaster obj) {
+        return false;
     }
 
     @Override
-    public void update(EmployeeMaster obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean update(EmployeeMaster obj) {
+        return false;
     }
 
     @Override
-    public void delete(EmployeeMaster obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean delete(EmployeeMaster obj) {
+        return false;
     }
 }

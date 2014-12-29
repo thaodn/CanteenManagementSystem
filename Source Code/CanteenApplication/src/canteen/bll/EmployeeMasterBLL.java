@@ -25,15 +25,15 @@ public class EmployeeMasterBLL {
         return objDAO.getAll();
     }
 
-    public static void create(EmployeeMaster obj) {
-        objDAO.create(obj);
+    public static boolean create(EmployeeMaster obj) {
+        return objDAO.create(obj);
     }
 
-    public static void update(EmployeeMaster obj) {
-        objDAO.update(obj);
+    public static boolean update(EmployeeMaster obj) {
+        return objDAO.update(obj);
     }
 
-    public static void delete(EmployeeMaster obj) {
-        objDAO.delete(obj);
+    public static boolean delete(EmployeeMaster obj) {
+        return objDAO.delete(obj);
     }
 }

@@ -25,17 +25,17 @@ public class FeedBackDAO extends AbstractDAO<FeedBack> {
     }
 
     @Override
-    public void create(FeedBack obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean create(FeedBack obj) {
+        return false;
     }
 
     @Override
-    public void update(FeedBack obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean update(FeedBack obj) {
+        return false;
     }
 
     @Override
-    public void delete(FeedBack obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean delete(FeedBack obj) {
+        return false;
     }
 }
