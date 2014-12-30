@@ -19,13 +19,12 @@ public class EmployeeMaster {
     private String address;
     private String phone;
     private String email;
-    private boolean status;
-    private int role;
+    private int status;
 
     public EmployeeMaster() {
     }
 
-    public EmployeeMaster(int employeeId, int departmentId, String username, String password, String fullName, String address, String phone, String email, boolean status, int role) {
+    public EmployeeMaster(int employeeId, int departmentId, String username, String password, String fullName, String address, String phone, String email, int status) {
         this.employeeId = employeeId;
         this.departmentId = departmentId;
         this.username = username;
@@ -35,7 +34,6 @@ public class EmployeeMaster {
         this.phone = phone;
         this.email = email;
         this.status = status;
-        this.role = role;
     }
 
     public int getEmployeeId() {
@@ -102,20 +100,12 @@ public class EmployeeMaster {
         this.email = email;
     }
 
-    public boolean isStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(int status) {
         this.status = status;
-    }
-
-    public int getRole() {
-        return role;
-    }
-
-    public void setRole(int role) {
-        this.role = role;
     }
 
 }

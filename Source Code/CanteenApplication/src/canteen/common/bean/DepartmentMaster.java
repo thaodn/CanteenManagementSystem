@@ -13,12 +13,12 @@ public class DepartmentMaster {
 
     private int departmentId;
     private String name;
-    private boolean status;
+    private int status;
 
     public DepartmentMaster() {
     }
 
-    public DepartmentMaster(int departmentId, String name, boolean status) {
+    public DepartmentMaster(int departmentId, String name, int status) {
         this.departmentId = departmentId;
         this.name = name;
         this.status = status;
@@ -40,11 +40,11 @@ public class DepartmentMaster {
         this.name = name;
     }
 
-    public boolean isStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 

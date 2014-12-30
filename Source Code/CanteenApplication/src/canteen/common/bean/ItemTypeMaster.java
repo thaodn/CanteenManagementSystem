@@ -13,12 +13,12 @@ public class ItemTypeMaster {
 
     private int itemTypeId;
     private String name;
-    private boolean status;
+    private int status;
 
     public ItemTypeMaster() {
     }
 
-    public ItemTypeMaster(int itemTypeId, String name, boolean status) {
+    public ItemTypeMaster(int itemTypeId, String name, int status) {
         this.itemTypeId = itemTypeId;
         this.name = name;
         this.status = status;
@@ -40,11 +40,11 @@ public class ItemTypeMaster {
         this.name = itemTypeName;
     }
 
-    public boolean isStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 

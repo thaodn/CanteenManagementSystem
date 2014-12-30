@@ -22,7 +22,7 @@ public class MainGUI extends javax.swing.JFrame {
 
         // Add Session
         Session.employee = new EmployeeMaster();
-        Session.employee.setRole(1);
+        Session.employee.setDepartmentId(1);
 
         // Add new pannel
         BillPanel pnlBill = new BillPanel();

@@ -24,7 +24,7 @@ public class BillPanel extends javax.swing.JPanel {
         tblAllBillModel = (DefaultTableModel) tblAllBill.getModel();
         tblBillDetailModel = (DefaultTableModel) tblBillDetail.getModel();
 
-        setButtonStatus(Session.employee.getRole() == 1);
+        setButtonStatus(Session.employee.getDepartmentId() == 1);
     }
 
     /**
@@ -66,7 +66,7 @@ public class BillPanel extends javax.swing.JPanel {
         scpAllBill = new javax.swing.JScrollPane();
         tblAllBill = new javax.swing.JTable();
 
-        setPreferredSize(new java.awt.Dimension(900, 600));
+        setPreferredSize(new java.awt.Dimension(920, 680));
 
         lblTitle.setFont(new java.awt.Font("Tahoma", 0, 25)); // NOI18N
         lblTitle.setForeground(new java.awt.Color(204, 102, 255));
@@ -243,12 +243,12 @@ public class BillPanel extends javax.swing.JPanel {
                             .addGroup(pnlBillDetailLayout.createSequentialGroup()
                                 .addComponent(lblSearch)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtSearch)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnSearch, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE))
+                                .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(pnlBillDetailLayout.createSequentialGroup()
                                 .addComponent(btnExportBill, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
                                 .addComponent(btnDeleteBill, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
         );
         pnlBillDetailLayout.setVerticalGroup(
@@ -335,7 +335,7 @@ public class BillPanel extends javax.swing.JPanel {
         );
         pnlAllBillLayout.setVerticalGroup(
             pnlAllBillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scpAllBill, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
+            .addComponent(scpAllBill, javax.swing.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -343,8 +343,8 @@ public class BillPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(pnlBillDetail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(pnlAllBill, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
+            .addComponent(pnlBillDetail, javax.swing.GroupLayout.DEFAULT_SIZE, 920, Short.MAX_VALUE)
+            .addComponent(pnlAllBill, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 920, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -353,7 +353,7 @@ public class BillPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlBillDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlAllBill, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE))
+                .addComponent(pnlAllBill, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -394,7 +394,7 @@ public class BillPanel extends javax.swing.JPanel {
     // Get all bill by role
     private void getAllBill() {
         tblAllBillModel.setNumRows(0);
-        
+
     }
 
     // Variables declaration

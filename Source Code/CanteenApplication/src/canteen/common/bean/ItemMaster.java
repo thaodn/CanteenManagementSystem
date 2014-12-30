@@ -18,12 +18,12 @@ public class ItemMaster {
     private float rate;
     private int quantity;
     private boolean special;
-    private boolean status;
+    private int status;
 
     public ItemMaster() {
     }
 
-    public ItemMaster(int itemId, String name, String image, int itemTypeId, float rate, int quantity, boolean special, boolean status) {
+    public ItemMaster(int itemId, String name, String image, int itemTypeId, float rate, int quantity, boolean special, int status) {
         this.itemId = itemId;
         this.name = name;
         this.image = image;
@@ -90,11 +90,11 @@ public class ItemMaster {
         this.special = special;
     }
 
-    public boolean isStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 

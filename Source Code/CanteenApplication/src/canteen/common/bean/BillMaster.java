@@ -19,12 +19,12 @@ public class BillMaster {
     private Date coupenDate;
     private String comment;
     private int employeeId;
-    private boolean status;
+    private int status;
 
     public BillMaster() {
     }
 
-    public BillMaster(int bId, Date createDate, String coupenNo, Date coupenDate, String comment, int employeeId, boolean status) {
+    public BillMaster(int bId, Date createDate, String coupenNo, Date coupenDate, String comment, int employeeId, int status) {
         this.bId = bId;
         this.createDate = createDate;
         this.coupenNo = coupenNo;
@@ -82,11 +82,11 @@ public class BillMaster {
         this.employeeId = employeeId;
     }
 
-    public boolean isStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 

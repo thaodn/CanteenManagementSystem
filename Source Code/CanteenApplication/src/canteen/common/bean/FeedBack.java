@@ -18,12 +18,12 @@ public class FeedBack {
     private String title;
     private Date date;
     private String message;
-    private boolean status;
+    private int status;
 
     public FeedBack() {
     }
 
-    public FeedBack(int feedBackId, int employeeId, String title, Date date, String message, boolean status) {
+    public FeedBack(int feedBackId, int employeeId, String title, Date date, String message, int status) {
         this.feedBackId = feedBackId;
         this.employeeId = employeeId;
         this.title = title;
@@ -72,11 +72,11 @@ public class FeedBack {
         this.message = message;
     }
 
-    public boolean isStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 

@@ -44,7 +44,7 @@ public class BillMasterDAO extends AbstractDAO<BillMaster> {
                 billMaster.setCoupenDate(rs.getDate("CoupenDate"));
                 billMaster.setComment(rs.getString("Comment"));
                 billMaster.setEmployeeId(rs.getInt("EmployeeId"));
-                billMaster.setStatus(rs.getBoolean("Status"));
+                billMaster.setStatus(rs.getInt("Status"));
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -71,7 +71,7 @@ public class BillMasterDAO extends AbstractDAO<BillMaster> {
                 billMaster.setCoupenDate(rs.getDate("CoupenDate"));
                 billMaster.setComment(rs.getString("Comment"));
                 billMaster.setEmployeeId(rs.getInt("EmployeeId"));
-                billMaster.setStatus(rs.getBoolean("Status"));
+                billMaster.setStatus(rs.getInt("Status"));
 
                 lstBillMasters.add(billMaster);
             }
@@ -100,7 +100,7 @@ public class BillMasterDAO extends AbstractDAO<BillMaster> {
                 billMaster.setCoupenDate(rs.getDate("CoupenDate"));
                 billMaster.setComment(rs.getString("Comment"));
                 billMaster.setEmployeeId(rs.getInt("EmployeeId"));
-                billMaster.setStatus(rs.getBoolean("Status"));
+                billMaster.setStatus(rs.getInt("Status"));
 
                 lstBillMasters.add(billMaster);
             }
@@ -124,7 +124,7 @@ public class BillMasterDAO extends AbstractDAO<BillMaster> {
             pstmt.setDate(3, new Date(obj.getCoupenDate().getTime()));
             pstmt.setString(4, obj.getComment());
             pstmt.setInt(5, obj.getEmployeeId());
-            pstmt.setBoolean(6, obj.isStatus());
+            pstmt.setInt(6, obj.getStatus());
             if (pstmt.executeUpdate() > 0) {
                 return true;
             }
@@ -147,7 +147,7 @@ public class BillMasterDAO extends AbstractDAO<BillMaster> {
         strSql = "UPDATE [BillMaster] SET [Status]=? WHERE [BId]=?";
         try {
             pstmt = conn.prepareStatement(strSql);
-            pstmt.setBoolean(1, obj.isStatus());
+            pstmt.setInt(1, obj.getStatus());
             pstmt.setInt(2, obj.getbId());
             if (pstmt.executeUpdate() > 0) {
                 return true;
