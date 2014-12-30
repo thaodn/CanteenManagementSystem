@@ -6,6 +6,7 @@
 package canteen.presentation;
 
 import canteen.common.bean.Session;
+import java.text.SimpleDateFormat;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -62,6 +63,7 @@ public class BillPanel extends javax.swing.JPanel {
         btnPayment = new javax.swing.JButton();
         btnExportBill = new javax.swing.JButton();
         btnDeleteBill = new javax.swing.JButton();
+        dateCreateDate = new com.toedter.calendar.JDateChooser();
         pnlAllBill = new javax.swing.JPanel();
         scpAllBill = new javax.swing.JScrollPane();
         tblAllBill = new javax.swing.JTable();
@@ -203,6 +205,12 @@ public class BillPanel extends javax.swing.JPanel {
             }
         });
 
+        dateCreateDate.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                dateCreateDatePropertyChange(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlBillDetailLayout = new javax.swing.GroupLayout(pnlBillDetail);
         pnlBillDetail.setLayout(pnlBillDetailLayout);
         pnlBillDetailLayout.setHorizontalGroup(
@@ -241,15 +249,17 @@ public class BillPanel extends javax.swing.JPanel {
                         .addGap(41, 41, 41)
                         .addGroup(pnlBillDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlBillDetailLayout.createSequentialGroup()
-                                .addComponent(lblSearch)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtSearch)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(pnlBillDetailLayout.createSequentialGroup()
                                 .addComponent(btnExportBill, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
-                                .addComponent(btnDeleteBill, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                .addComponent(btnDeleteBill, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pnlBillDetailLayout.createSequentialGroup()
+                                .addComponent(lblSearch)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(pnlBillDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(dateCreateDate, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
+                                    .addComponent(txtSearch))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))))
         );
         pnlBillDetailLayout.setVerticalGroup(
             pnlBillDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -288,6 +298,8 @@ public class BillPanel extends javax.swing.JPanel {
                                 .addComponent(btnSearch)
                                 .addComponent(lblSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jlblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(dateCreateDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(pnlBillDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlBillDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -385,6 +397,14 @@ public class BillPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSearchActionPerformed
 
+    private void dateCreateDatePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_dateCreateDatePropertyChange
+        // TODO add your handling code here:
+        if (evt.getPropertyName().equals("date")) {
+            String createDate = new SimpleDateFormat("yyyy-MM-dd").format(dateCreateDate.getDate());
+            System.out.println(createDate);
+        }
+    }//GEN-LAST:event_dateCreateDatePropertyChange
+
     private void setButtonStatus(boolean status) {
         btnPayment.setVisible(status);
         btnExportBill.setVisible(status);
@@ -407,6 +427,7 @@ public class BillPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnUpdateComment;
     private javax.swing.JComboBox cboStatus;
+    private com.toedter.calendar.JDateChooser dateCreateDate;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel jlblComment;
     private javax.swing.JLabel jlblCreateDate;
