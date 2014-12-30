@@ -11,13 +11,22 @@ import java.sql.SQLException;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
- * @author ndkhanh
+ * @author Admin
  */
 public class DBUtility {
 
+    private static Connection conn = null;
+    private static PreparedStatement pstmt = null;
+    private static ResultSet rs = null;
+
+    /**
+     *
+     * @return Connection
+     */
     public static Connection getConnection() {
         Connection connection = null;
 
@@ -55,6 +64,12 @@ public class DBUtility {
         return connection;
     }
 
+    /**
+     *
+     * @param connection
+     * @param pstmt
+     * @param rs
+     */
     public static void closeAll(Connection connection, PreparedStatement pstmt, ResultSet rs) {
         if (connection != null) {
             try {
@@ -79,7 +94,73 @@ public class DBUtility {
         }
     }
 
-//    public static void main(String[] args) {
-//        System.out.println(getConnection());
-//    }
+    /**
+     *
+     * @param strSql
+     * @return ResultSet
+     */
+    public static ResultSet getData(String strSql) {
+        conn = getConnection();
+        try {
+            pstmt = conn.prepareStatement(strSql);
+            rs = pstmt.executeQuery();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            closeAll(conn, pstmt, rs);
+        }
+        return rs;
+    }
+
+    /**
+     *
+     * @param strSql
+     * @param value
+     * @param numPara
+     * @return ResultSet
+     */
+    public static ResultSet getData(String strSql, Object[] value, int numPara) {
+        conn = getConnection();
+        try {
+            pstmt = conn.prepareStatement(strSql);
+            for (int i = 0; i < numPara; i++) {
+                pstmt.setObject(i, value[i]);
+            }
+            rs = pstmt.executeQuery();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            closeAll(conn, pstmt, rs);
+        }
+        return rs;
+    }
+
+    /**
+     *
+     * @param strSql
+     * @param value
+     * @param numPara
+     * @return result
+     */
+    public static int setData(String strSql, Object[] value, int numPara) {
+        int result = 0;
+        conn = getConnection();
+        try {
+            pstmt = conn.prepareStatement(strSql);
+            for (int i = 0; i < numPara; i++) {
+                pstmt.setObject(i, value[i]);
+            }
+            result = pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            closeAll(conn, pstmt, rs);
+        }
+
+        return result;
+    }
+
+    //public static void main(String[] args) {
+    //    System.out.println(getConnection());
+    //}
 }
