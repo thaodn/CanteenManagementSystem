@@ -6,7 +6,9 @@
 package canteen.presentation;
 
 import canteen.common.bean.EmployeeMaster;
-import canteen.common.bean.Session;
+import canteen.common.utility.Session;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 
 /**
  *
@@ -24,7 +26,12 @@ public class MainGUI extends javax.swing.JFrame {
         Session.employee = new EmployeeMaster();
         Session.employee.setDepartmentId(1);
 
-        // Add new pannel
+        // Add LoginPanel
+        JPanel pnlLogin = new JPanel();
+        pnlLogin.setName("Login");
+        tpnMainUI.add(pnlLogin);
+
+        // Add BillPannel
         BillPanel pnlBill = new BillPanel();
         pnlBill.setName("Bill");
         tpnMainUI.add(pnlBill);
@@ -47,6 +54,11 @@ public class MainGUI extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(920, 680));
 
         tpnMainUI.setToolTipText("");
+        tpnMainUI.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                tpnMainUIStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -62,6 +74,15 @@ public class MainGUI extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void tpnMainUIStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tpnMainUIStateChanged
+        // TODO add your handling code here:
+        JTabbedPane sourceTabbedPane = (JTabbedPane) evt.getSource();
+        int index = sourceTabbedPane.getSelectedIndex();
+//        tpnMainUI.getTabComponentAt(index).revalidate();
+//        tpnMainUI.getTabComponentAt(index).repaint();
+        System.out.println("Tab changed to: " + sourceTabbedPane.getTitleAt(index));
+    }//GEN-LAST:event_tpnMainUIStateChanged
 
     /**
      * @param args the command line arguments

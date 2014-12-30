@@ -19,6 +19,10 @@ import javax.swing.JOptionPane;
  */
 public class DBUtility {
 
+    public DBUtility() {
+        conn = getConnection();
+    }
+
     private static Connection conn = null;
     private static PreparedStatement pstmt = null;
     private static ResultSet rs = null;
@@ -28,17 +32,13 @@ public class DBUtility {
      * @return Connection
      */
     public static Connection getConnection() {
-        Connection connection = null;
-
+        // Read config from Config.properties
+        Properties p = new Properties();
         String url = "";
         String port = "";
         String user = "";
         String password = "";
         String dbName = "";
-
-        // Doc File Propertyes
-        Properties p = new Properties();
-
         try {
             p.load(new FileInputStream("Config.properties"));
 
@@ -47,13 +47,14 @@ public class DBUtility {
             user = p.getProperty("user");
             password = p.getProperty("password");
             dbName = p.getProperty("dbName");
-
         } catch (FileNotFoundException ex) {
             Logger.getLogger(DBUtility.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(DBUtility.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        // Get Connection
+        Connection connection = null;
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             connection = DriverManager.getConnection("jdbc:sqlserver://" + url + ":" + port + ";databaseName=" + dbName, user, password);
@@ -116,15 +117,14 @@ public class DBUtility {
      *
      * @param strSql
      * @param value
-     * @param numPara
      * @return ResultSet
      */
-    public static ResultSet getData(String strSql, Object[] value, int numPara) {
+    public static ResultSet getData(String strSql, Object[] value) {
         conn = getConnection();
         try {
             pstmt = conn.prepareStatement(strSql);
-            for (int i = 0; i < numPara; i++) {
-                pstmt.setObject(i, value[i]);
+            for (int i = 0; i < value.length; i++) {
+                pstmt.setObject(i + 1, value[i]);
             }
             rs = pstmt.executeQuery();
         } catch (SQLException ex) {
@@ -139,16 +139,15 @@ public class DBUtility {
      *
      * @param strSql
      * @param value
-     * @param numPara
      * @return result
      */
-    public static int setData(String strSql, Object[] value, int numPara) {
+    public static int setData(String strSql, Object[] value) {
         int result = 0;
         conn = getConnection();
         try {
             pstmt = conn.prepareStatement(strSql);
-            for (int i = 0; i < numPara; i++) {
-                pstmt.setObject(i, value[i]);
+            for (int i = 0; i < value.length; i++) {
+                pstmt.setObject(i + 1, value[i]);
             }
             result = pstmt.executeUpdate();
         } catch (SQLException ex) {
@@ -160,7 +159,11 @@ public class DBUtility {
         return result;
     }
 
-    //public static void main(String[] args) {
-    //    System.out.println(getConnection());
-    //}
+    /**
+     *
+     * @param args
+     */
+    public static void main(String[] args) {
+        System.out.println(getConnection());
+    }
 }

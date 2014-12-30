@@ -5,7 +5,7 @@
  */
 package canteen.presentation;
 
-import canteen.common.bean.Session;
+import canteen.common.utility.Session;
 import java.text.SimpleDateFormat;
 import javax.swing.table.DefaultTableModel;
 
