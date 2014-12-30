@@ -25,15 +25,15 @@ public class ItemMasterBLL {
         return objDAO.getAll();
     }
 
-    public static boolean create(ItemMaster obj) {
+    public static int create(ItemMaster obj) {
         return objDAO.create(obj);
     }
 
-    public static boolean update(ItemMaster obj) {
+    public static int update(ItemMaster obj) {
         return objDAO.update(obj);
     }
 
-    public static boolean delete(ItemMaster obj) {
+    public static int delete(ItemMaster obj) {
         return objDAO.delete(obj);
     }
 }

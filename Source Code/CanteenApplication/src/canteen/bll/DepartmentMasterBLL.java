@@ -21,19 +21,23 @@ public class DepartmentMasterBLL {
         return objDAO.getById(id);
     }
 
+    public static List<DepartmentMaster> getByStatus(int status) {
+        return objDAO.getByStatus(status);
+    }
+
     public static List<DepartmentMaster> getAll() {
         return objDAO.getAll();
     }
 
-    public static boolean create(DepartmentMaster obj) {
+    public static int create(DepartmentMaster obj) {
         return objDAO.create(obj);
     }
 
-    public static boolean update(DepartmentMaster obj) {
+    public static int update(DepartmentMaster obj) {
         return objDAO.update(obj);
     }
 
-    public static boolean delete(DepartmentMaster obj) {
+    public static int delete(DepartmentMaster obj) {
         return objDAO.delete(obj);
     }
 }

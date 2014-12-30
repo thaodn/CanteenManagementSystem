@@ -13,7 +13,7 @@ import java.util.Date;
  */
 public class BillMaster {
 
-    private int bId;
+    private int billId;
     private Date createDate;
     private String coupenNo;
     private Date coupenDate;
@@ -24,8 +24,8 @@ public class BillMaster {
     public BillMaster() {
     }
 
-    public BillMaster(int bId, Date createDate, String coupenNo, Date coupenDate, String comment, int employeeId, int status) {
-        this.bId = bId;
+    public BillMaster(int billId, Date createDate, String coupenNo, Date coupenDate, String comment, int employeeId, int status) {
+        this.billId = billId;
         this.createDate = createDate;
         this.coupenNo = coupenNo;
         this.coupenDate = coupenDate;
@@ -34,12 +34,12 @@ public class BillMaster {
         this.status = status;
     }
 
-    public int getbId() {
-        return bId;
+    public int getBillId() {
+        return billId;
     }
 
-    public void setbId(int bId) {
-        this.bId = bId;
+    public void setBillId(int billId) {
+        this.billId = billId;
     }
 
     public Date getCreateDate() {

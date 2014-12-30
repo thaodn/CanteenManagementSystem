@@ -11,7 +11,7 @@ package canteen.common.bean;
  */
 public class BillDetail {
 
-    private int bId;
+    private int billId;
     private int itemId;
     private int quantity;
     private float rate;
@@ -19,19 +19,19 @@ public class BillDetail {
     public BillDetail() {
     }
 
-    public BillDetail(int bId, int itemId, int quantity, float rate) {
-        this.bId = bId;
+    public BillDetail(int billId, int itemId, int quantity, float rate) {
+        this.billId = billId;
         this.itemId = itemId;
         this.quantity = quantity;
         this.rate = rate;
     }
 
-    public int getbId() {
-        return bId;
+    public int getBillId() {
+        return billId;
     }
 
-    public void setbId(int bId) {
-        this.bId = bId;
+    public void setBillId(int billId) {
+        this.billId = billId;
     }
 
     public int getItemId() {

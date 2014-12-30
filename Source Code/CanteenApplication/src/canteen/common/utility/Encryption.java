@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package canteen.common.utility;
 
 import java.io.File;
@@ -208,12 +213,11 @@ public class Encryption {
         return secretKey;
     }
 
-    public static void main(String[] args) {
-        System.out.println(getMD5("123456"));
-        System.out.println(getSHA1("123456"));
-
-        String code = getBase64Encode("123456");
-        System.out.println(code);
-        System.out.println(getBase64Decode(code));
-    }
+    //public static void main(String[] args) {
+    //    System.out.println(getMD5("123456"));
+    //    System.out.println(getSHA1("123456"));
+    //    String code = getBase64Encode("123456");
+    //    System.out.println(code);
+    //    System.out.println(getBase64Decode(code));
+    //}
 }

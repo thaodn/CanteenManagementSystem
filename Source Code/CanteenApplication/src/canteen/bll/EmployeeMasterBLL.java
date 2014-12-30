@@ -21,19 +21,31 @@ public class EmployeeMasterBLL {
         return objDAO.getById(id);
     }
 
+    public static EmployeeMaster getByLogin(String userName, String password) {
+        return objDAO.getByLogin(userName, password);
+    }
+
     public static List<EmployeeMaster> getAll() {
         return objDAO.getAll();
     }
 
-    public static boolean create(EmployeeMaster obj) {
+    public static int create(EmployeeMaster obj) {
         return objDAO.create(obj);
     }
 
-    public static boolean update(EmployeeMaster obj) {
+    public static int update(EmployeeMaster obj) {
         return objDAO.update(obj);
     }
 
-    public static boolean delete(EmployeeMaster obj) {
+    public static int delete(EmployeeMaster obj) {
         return objDAO.delete(obj);
+    }
+
+    public static int changePassword(int id, String password) {
+        return objDAO.changePassword(id, password);
+    }
+
+    public static int forgotPassword(int id, String userName) {
+        return objDAO.forgotPassword(id, userName);
     }
 }

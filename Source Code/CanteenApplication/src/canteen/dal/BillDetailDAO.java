@@ -6,9 +6,7 @@
 package canteen.dal;
 
 import canteen.common.bean.BillDetail;
-import canteen.common.utility.DBUtility;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
+import canteen.common.utility.DataUtility;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -21,47 +19,34 @@ import javax.swing.JOptionPane;
  */
 public class BillDetailDAO extends AbstractDAO<BillDetail> {
 
-    private Connection conn = null;
-    private PreparedStatement pstmt = null;
     private ResultSet rs = null;
     private String strSql;
     private BillDetail billDetail;
 
     @Override
     public BillDetail getById(int id) {
-        conn = DBUtility.getConnection();
-        strSql = "SELECT [BId],[ItemId],[Quantity],[Rate] FROM [BillDetail] WHERE [BId]=? ORDER BY [BId] DESC";
-        try {
-            pstmt = conn.prepareStatement(strSql);
-            pstmt.setInt(1, id);
-            rs = pstmt.executeQuery();
-            while (rs.next()) {
-                billDetail = new BillDetail();
-                billDetail.setbId(rs.getInt("BId"));
-                billDetail.setItemId(rs.getInt("ItemId"));
-                billDetail.setQuantity(rs.getInt("Quantity"));
-                billDetail.setRate(rs.getFloat("Rate"));
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        } finally {
-            DBUtility.closeAll(conn, pstmt, rs);
-        }
-
-        return billDetail;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public List<BillDetail> getAll() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    /**
+     *
+     * @return List BillDetail By BillId
+     */
+    public List<BillDetail> getAllByBillId(int id) {
+        strSql = "{call sp_BillDetail_GetByBillId (?)}";
+        Object[] value = {id};
         List<BillDetail> lstBillDetails = new ArrayList<>();
-        conn = DBUtility.getConnection();
-        strSql = "SELECT [BId],[ItemId],[Quantity],[Rate] FROM [BillDetail] ORDER BY [BId] DESC";
+
+        rs = DataUtility.getData(strSql, value);
         try {
-            pstmt = conn.prepareStatement(strSql);
-            rs = pstmt.executeQuery();
             while (rs.next()) {
                 billDetail = new BillDetail();
-                billDetail.setbId(rs.getInt("BId"));
+                billDetail.setBillId(rs.getInt("BillId"));
                 billDetail.setItemId(rs.getInt("ItemId"));
                 billDetail.setQuantity(rs.getInt("Quantity"));
                 billDetail.setRate(rs.getFloat("Rate"));
@@ -70,75 +55,70 @@ public class BillDetailDAO extends AbstractDAO<BillDetail> {
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        } finally {
-            DBUtility.closeAll(conn, pstmt, rs);
         }
 
         return lstBillDetails;
     }
 
+    /**
+     *
+     * @param obj
+     * @return 0 or 1
+     */
     @Override
-    public boolean create(BillDetail obj) {
-        conn = DBUtility.getConnection();
-        strSql = "INSERT INTO [BillDetail] ([BId],[ItemId],[Quantity],[Rate]) VALUES (?,?,?,?)";
-        try {
-            pstmt = conn.prepareStatement(strSql);
-            pstmt.setInt(1, obj.getbId());
-            pstmt.setInt(2, obj.getItemId());
-            pstmt.setInt(3, obj.getQuantity());
-            pstmt.setFloat(4, obj.getRate());
-            if (pstmt.executeUpdate() > 0) {
-                return true;
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        } finally {
-            DBUtility.closeAll(conn, pstmt, rs);
-        }
-
-        return false;
+    public int create(BillDetail obj) {
+        strSql = "{call sp_BillDetail_Insert (?,?,?,?)}";
+        Object[] value = {
+            obj.getBillId(),
+            obj.getItemId(),
+            obj.getQuantity(),
+            obj.getRate()
+        };
+        return DataUtility.setData(strSql, value);
     }
 
     @Override
-    public boolean update(BillDetail obj) {
-        return false;
+    public int update(BillDetail obj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     *
+     * @param obj
+     * @return 0 or 1
+     */
     @Override
-    public boolean delete(BillDetail obj) {
-        conn = DBUtility.getConnection();
-        strSql = "DELETE FROM [BillDetail] WHERE [BId]=?";
-        try {
-            pstmt = conn.prepareStatement(strSql);
-            pstmt.setInt(1, obj.getbId());
-            if (pstmt.executeUpdate() > 0) {
-                return true;
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        } finally {
-            DBUtility.closeAll(conn, pstmt, rs);
-        }
-
-        return false;
+    public int delete(BillDetail obj) {
+        //strSql = "{call }";
+        strSql = "DELETE FROM [BillDetail] WHERE [BillId]=?";
+        Object[] value = {
+            obj.getBillId()
+        };
+        return DataUtility.setData(strSql, value);
     }
 
+    /**
+     *
+     * @param obj
+     * @return TotalPrice
+     */
     public float totalPriceByBId(BillDetail obj) {
-        conn = DBUtility.getConnection();
-        strSql = "SELECT SUM([Quantity]*[Rate]) AS [TotalPrice] FROM [BillDetail] WHERE [BId]=?";
+        //strSql = "{call }";
+        strSql = "SELECT SUM([Quantity]*[Rate]) AS [TotalPrice] FROM [BillDetail] WHERE [BillId]=?";
+        Object[] value = {
+            obj.getBillId()
+        };
+        float totalPrice = 0;
+
         try {
-            pstmt = conn.prepareStatement(strSql);
-            pstmt.setInt(1, obj.getbId());
-            rs = pstmt.executeQuery();
+            rs = DataUtility.getData(strSql, value);
             if (rs.next()) {
-                return rs.getFloat("TotalPrice");
+                totalPrice = rs.getFloat("TotalPrice");
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        } finally {
-            DBUtility.closeAll(conn, pstmt, rs);
         }
 
-        return 0;
+        return totalPrice;
     }
 }

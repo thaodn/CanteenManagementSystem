@@ -17,13 +17,13 @@ public class ItemMaster {
     private int itemTypeId;
     private float rate;
     private int quantity;
-    private boolean special;
+    private int special;
     private int status;
 
     public ItemMaster() {
     }
 
-    public ItemMaster(int itemId, String name, String image, int itemTypeId, float rate, int quantity, boolean special, int status) {
+    public ItemMaster(int itemId, String name, String image, int itemTypeId, float rate, int quantity, int special, int status) {
         this.itemId = itemId;
         this.name = name;
         this.image = image;
@@ -82,11 +82,11 @@ public class ItemMaster {
         this.quantity = quantity;
     }
 
-    public boolean isSpecial() {
+    public int getSpecial() {
         return special;
     }
 
-    public void setSpecial(boolean special) {
+    public void setSpecial(int special) {
         this.special = special;
     }
 

@@ -6,10 +6,8 @@
 package canteen.dal;
 
 import canteen.common.bean.BillMaster;
-import canteen.common.utility.DBUtility;
-import java.sql.Connection;
+import canteen.common.utility.DataUtility;
 import java.sql.Date;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -22,23 +20,25 @@ import javax.swing.JOptionPane;
  */
 public class BillMasterDAO extends AbstractDAO<BillMaster> {
 
-    private Connection conn = null;
-    private PreparedStatement pstmt = null;
     private ResultSet rs = null;
     private String strSql;
     private BillMaster billMaster;
 
+    /**
+     *
+     * @param id
+     * @return BillMaster
+     */
     @Override
     public BillMaster getById(int id) {
-        conn = DBUtility.getConnection();
-        strSql = "SELECT [BId],[CreateDate],[CoupenNo],[CoupenDate],[Comment],[EmployeeId],[Status] FROM [BillMaster] WHERE [BId]=? ORDER BY [BId] DESC";
+        strSql = "{call sp_Bill_GetById (?)}";
+        Object[] value = {id};
+        billMaster = new BillMaster();
+
+        rs = DataUtility.getData(strSql, value);
         try {
-            pstmt = conn.prepareStatement(strSql);
-            pstmt.setInt(1, id);
-            rs = pstmt.executeQuery();
             while (rs.next()) {
-                billMaster = new BillMaster();
-                billMaster.setbId(rs.getInt("BId"));
+                billMaster.setBillId(rs.getInt("BillId"));
                 billMaster.setCreateDate(rs.getDate("CreateDate"));
                 billMaster.setCoupenNo(rs.getString("CoupenNo"));
                 billMaster.setCoupenDate(rs.getDate("CoupenDate"));
@@ -48,24 +48,25 @@ public class BillMasterDAO extends AbstractDAO<BillMaster> {
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        } finally {
-            DBUtility.closeAll(conn, pstmt, rs);
         }
 
         return billMaster;
     }
 
+    /**
+     *
+     * @return List BillMaster
+     */
     @Override
     public List<BillMaster> getAll() {
+        strSql = "{call sp_Bill_GetByAll}";
         List<BillMaster> lstBillMasters = new ArrayList<>();
-        conn = DBUtility.getConnection();
-        strSql = "SELECT [BId],[CreateDate],[CoupenNo],[CoupenDate],[Comment],[EmployeeId],[Status] FROM [BillMaster] ORDER BY [BId] DESC";
+
+        rs = DataUtility.getData(strSql);
         try {
-            pstmt = conn.prepareStatement(strSql);
-            rs = pstmt.executeQuery();
             while (rs.next()) {
                 billMaster = new BillMaster();
-                billMaster.setbId(rs.getInt("BId"));
+                billMaster.setBillId(rs.getInt("BillId"));
                 billMaster.setCreateDate(rs.getDate("CreateDate"));
                 billMaster.setCoupenNo(rs.getString("CoupenNo"));
                 billMaster.setCoupenDate(rs.getDate("CoupenDate"));
@@ -77,24 +78,26 @@ public class BillMasterDAO extends AbstractDAO<BillMaster> {
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        } finally {
-            DBUtility.closeAll(conn, pstmt, rs);
         }
 
         return lstBillMasters;
     }
 
+    /**
+     *
+     * @param empId
+     * @return List BillMaster By EmpId
+     */
     public List<BillMaster> getAllByEmpId(int empId) {
+        strSql = "{call sp_Bill_GetByEmpId (?)}";
+        Object[] value = {empId};
         List<BillMaster> lstBillMasters = new ArrayList<>();
-        conn = DBUtility.getConnection();
-        strSql = "SELECT [BId],[CreateDate],[CoupenNo],[CoupenDate],[Comment],[EmployeeId],[Status] FROM [BillMaster] WHERE [EmployeeId]=? ORDER BY [BId] DESC";
+
+        rs = DataUtility.getData(strSql, value);
         try {
-            pstmt = conn.prepareStatement(strSql);
-            pstmt.setInt(1, empId);
-            rs = pstmt.executeQuery();
             while (rs.next()) {
                 billMaster = new BillMaster();
-                billMaster.setbId(rs.getInt("BId"));
+                billMaster.setBillId(rs.getInt("BillId"));
                 billMaster.setCreateDate(rs.getDate("CreateDate"));
                 billMaster.setCoupenNo(rs.getString("CoupenNo"));
                 billMaster.setCoupenDate(rs.getDate("CoupenDate"));
@@ -106,96 +109,107 @@ public class BillMasterDAO extends AbstractDAO<BillMaster> {
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        } finally {
-            DBUtility.closeAll(conn, pstmt, rs);
         }
 
         return lstBillMasters;
     }
 
+    /**
+     *
+     * @param empId
+     * @param status
+     * @return List BillMaster By EmpId and Status
+     */
+    public List<BillMaster> getAllByStatus(int empId, int status) {
+        strSql = "{call sp_Bill_GetByStatus (?,?)}";
+        Object[] value = {empId, status};
+        List<BillMaster> lstBillMasters = new ArrayList<>();
+
+        rs = DataUtility.getData(strSql, value);
+        try {
+            while (rs.next()) {
+                billMaster = new BillMaster();
+                billMaster.setBillId(rs.getInt("BillId"));
+                billMaster.setCreateDate(rs.getDate("CreateDate"));
+                billMaster.setCoupenNo(rs.getString("CoupenNo"));
+                billMaster.setCoupenDate(rs.getDate("CoupenDate"));
+                billMaster.setComment(rs.getString("Comment"));
+                billMaster.setEmployeeId(rs.getInt("EmployeeId"));
+                billMaster.setStatus(rs.getInt("Status"));
+
+                lstBillMasters.add(billMaster);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+        return lstBillMasters;
+    }
+
+    /**
+     *
+     * @param obj
+     * @return 0 or 1
+     */
     @Override
-    public boolean create(BillMaster obj) {
-        conn = DBUtility.getConnection();
-        strSql = "INSERT INTO [BillMaster] ([CreateDate] ,[CoupenNo] ,[CoupenDate] ,[Comment] ,[EmployeeId] ,[Status]) VALUES (?,?,?,?,?,?)";
-        try {
-            pstmt = conn.prepareStatement(strSql);
-            pstmt.setDate(1, new Date(obj.getCreateDate().getTime()));
-            pstmt.setString(2, obj.getCoupenNo());
-            pstmt.setDate(3, new Date(obj.getCoupenDate().getTime()));
-            pstmt.setString(4, obj.getComment());
-            pstmt.setInt(5, obj.getEmployeeId());
-            pstmt.setInt(6, obj.getStatus());
-            if (pstmt.executeUpdate() > 0) {
-                return true;
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        } finally {
-            DBUtility.closeAll(conn, pstmt, rs);
-        }
-
-        return false;
-    }
-
-    @Override
-    public boolean update(BillMaster obj) {
-        return false;
-    }
-
-    public boolean updateStatus(BillMaster obj) {
-        conn = DBUtility.getConnection();
-        strSql = "UPDATE [BillMaster] SET [Status]=? WHERE [BId]=?";
-        try {
-            pstmt = conn.prepareStatement(strSql);
-            pstmt.setInt(1, obj.getStatus());
-            pstmt.setInt(2, obj.getbId());
-            if (pstmt.executeUpdate() > 0) {
-                return true;
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        } finally {
-            DBUtility.closeAll(conn, pstmt, rs);
-        }
-
-        return false;
-    }
-
-    public boolean updateComment(BillMaster obj) {
-        conn = DBUtility.getConnection();
-        strSql = "UPDATE [BillMaster] SET [Comment]=? WHERE [BId]=?";
-        try {
-            pstmt = conn.prepareStatement(strSql);
-            pstmt.setString(1, obj.getComment());
-            pstmt.setInt(2, obj.getbId());
-            if (pstmt.executeUpdate() > 0) {
-                return true;
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        } finally {
-            DBUtility.closeAll(conn, pstmt, rs);
-        }
-
-        return false;
+    public int create(BillMaster obj) {
+        strSql = "{call sp_Bill_Insert (?,?,?,?,?,?)}";
+        Object[] value = {
+            new Date(obj.getCreateDate().getTime()),
+            obj.getCoupenNo(),
+            new Date(obj.getCoupenDate().getTime()),
+            obj.getComment(),
+            obj.getEmployeeId(),
+            obj.getStatus()
+        };
+        return DataUtility.setData(strSql, value);
     }
 
     @Override
-    public boolean delete(BillMaster obj) {
-        conn = DBUtility.getConnection();
-        strSql = "DELETE FROM [BillMaster] WHERE [BId]=?";
-        try {
-            pstmt = conn.prepareStatement(strSql);
-            pstmt.setInt(1, obj.getbId());
-            if (pstmt.executeUpdate() > 0) {
-                return true;
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        } finally {
-            DBUtility.closeAll(conn, pstmt, rs);
-        }
+    public int update(BillMaster obj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
-        return false;
+    /**
+     *
+     * @param obj
+     * @return 0 or 1
+     */
+    public int updateStatus(BillMaster obj) {
+        strSql = "{call sp_Bill_UpdateStatus (?,?)}";
+        Object[] value = {
+            obj.getBillId(),
+            obj.getStatus()
+        };
+        return DataUtility.setData(strSql, value);
+    }
+
+    /**
+     *
+     * @param obj
+     * @return 0 or 1
+     */
+    public int updateComment(BillMaster obj) {
+        strSql = "{call sp_Bill_UpdateComment (?,?)}";
+        Object[] value = {
+            obj.getBillId(),
+            obj.getComment()
+        };
+        return DataUtility.setData(strSql, value);
+    }
+
+    /**
+     *
+     * @param obj
+     * @return 0 or 1
+     */
+    @Override
+    public int delete(BillMaster obj) {
+        //strSql = "{call }";
+        strSql = "DELETE FROM [BillMaster] WHERE [BillId]=?";
+        Object[] value = {
+            obj.getBillId()
+        };
+        return DataUtility.setData(strSql, value);
     }
 }

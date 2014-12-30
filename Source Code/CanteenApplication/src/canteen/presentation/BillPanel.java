@@ -25,7 +25,7 @@ public class BillPanel extends javax.swing.JPanel {
         tblAllBillModel = (DefaultTableModel) tblAllBill.getModel();
         tblBillDetailModel = (DefaultTableModel) tblBillDetail.getModel();
 
-        setButtonStatus(Session.employee.getDepartmentId() == 1);
+        setButtonStatus(Session.employee.getRole() == 1);
     }
 
     /**

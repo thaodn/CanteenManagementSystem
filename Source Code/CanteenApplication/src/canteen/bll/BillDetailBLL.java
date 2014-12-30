@@ -15,25 +15,17 @@ import java.util.List;
  */
 public class BillDetailBLL {
 
-    private static final BillDetailDAO objDAO = new BillDetailDAO();
+    private static BillDetailDAO objDAO = new BillDetailDAO();
 
-    public static BillDetail getById(int id) {
-        return objDAO.getById(id);
+    public static List<BillDetail> getAllByBillId(int id) {
+        return objDAO.getAllByBillId(id);
     }
 
-    public static List<BillDetail> getAll() {
-        return objDAO.getAll();
-    }
-
-    public static boolean create(BillDetail obj) {
+    public static int create(BillDetail obj) {
         return objDAO.create(obj);
     }
 
-    public static boolean update(BillDetail obj) {
-        return objDAO.update(obj);
-    }
-
-    public static boolean delete(BillDetail obj) {
+    public static int delete(BillDetail obj) {
         return objDAO.delete(obj);
     }
 

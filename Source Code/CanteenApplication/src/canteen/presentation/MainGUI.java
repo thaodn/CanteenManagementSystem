@@ -7,7 +7,7 @@ package canteen.presentation;
 
 import canteen.common.bean.EmployeeMaster;
 import canteen.common.utility.Session;
-import javax.swing.JPanel;
+import javax.swing.ImageIcon;
 import javax.swing.JTabbedPane;
 
 /**
@@ -24,17 +24,15 @@ public class MainGUI extends javax.swing.JFrame {
 
         // Add Session
         Session.employee = new EmployeeMaster();
-        Session.employee.setDepartmentId(1);
+        Session.employee.setRole(1);
 
         // Add LoginPanel
-        JPanel pnlLogin = new JPanel();
-        pnlLogin.setName("Login");
-        tpnMainUI.add(pnlLogin);
+        pnlLogin = new LoginPanel();
+        tpnMainUI.addTab(null, new ImageIcon("images/icon/home_icon.png"), pnlLogin);
 
         // Add BillPannel
-        BillPanel pnlBill = new BillPanel();
-        pnlBill.setName("Bill");
-        tpnMainUI.add(pnlBill);
+        pnlBill = new BillPanel();
+        tpnMainUI.addTab(null, new ImageIcon("images/icon/product_icon.png"), pnlBill);
     }
 
     /**
@@ -64,11 +62,11 @@ public class MainGUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tpnMainUI, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
+            .addComponent(tpnMainUI, javax.swing.GroupLayout.DEFAULT_SIZE, 920, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tpnMainUI, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+            .addComponent(tpnMainUI, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE)
         );
 
         pack();
@@ -79,9 +77,6 @@ public class MainGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         JTabbedPane sourceTabbedPane = (JTabbedPane) evt.getSource();
         int index = sourceTabbedPane.getSelectedIndex();
-//        tpnMainUI.getTabComponentAt(index).revalidate();
-//        tpnMainUI.getTabComponentAt(index).repaint();
-        System.out.println("Tab changed to: " + sourceTabbedPane.getTitleAt(index));
     }//GEN-LAST:event_tpnMainUIStateChanged
 
     /**
@@ -119,6 +114,10 @@ public class MainGUI extends javax.swing.JFrame {
             }
         });
     }
+
+    // Variables declaration
+    private LoginPanel pnlLogin;
+    private BillPanel pnlBill;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane tpnMainUI;

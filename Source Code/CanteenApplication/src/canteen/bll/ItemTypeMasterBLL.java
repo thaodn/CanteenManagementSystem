@@ -21,19 +21,23 @@ public class ItemTypeMasterBLL {
         return objDAO.getById(id);
     }
 
+    public static List<ItemTypeMaster> getByStatus(int status) {
+        return objDAO.getByStatus(status);
+    }
+
     public static List<ItemTypeMaster> getAll() {
         return objDAO.getAll();
     }
 
-    public static boolean create(ItemTypeMaster obj) {
+    public static int create(ItemTypeMaster obj) {
         return objDAO.create(obj);
     }
 
-    public static boolean update(ItemTypeMaster obj) {
+    public static int update(ItemTypeMaster obj) {
         return objDAO.update(obj);
     }
 
-    public static boolean delete(ItemTypeMaster obj) {
+    public static int delete(ItemTypeMaster obj) {
         return objDAO.delete(obj);
     }
 }

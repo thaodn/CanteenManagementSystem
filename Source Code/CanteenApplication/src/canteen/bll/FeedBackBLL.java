@@ -21,19 +21,23 @@ public class FeedBackBLL {
         return objDAO.getById(id);
     }
 
+    public static List<FeedBack> getByStatus(int status) {
+        return objDAO.getByStatus(status);
+    }
+
     public static List<FeedBack> getAll() {
         return objDAO.getAll();
     }
 
-    public static boolean create(FeedBack obj) {
+    public static int create(FeedBack obj) {
         return objDAO.create(obj);
     }
 
-    public static boolean update(FeedBack obj) {
+    public static int update(FeedBack obj) {
         return objDAO.update(obj);
     }
 
-    public static boolean delete(FeedBack obj) {
+    public static int delete(FeedBack obj) {
         return objDAO.delete(obj);
     }
 }

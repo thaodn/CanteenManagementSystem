@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class BillMasterBLL {
 
-    private static final BillMasterDAO objDAO = new BillMasterDAO();
+    private static BillMasterDAO objDAO = new BillMasterDAO();
 
     public static BillMaster getById(int id) {
         return objDAO.getById(id);
@@ -29,19 +29,23 @@ public class BillMasterBLL {
         return objDAO.getAllByEmpId(empId);
     }
 
-    public static boolean create(BillMaster obj) {
+    public static List<BillMaster> getAllByStatus(int empId, int status) {
+        return objDAO.getAllByStatus(empId, status);
+    }
+
+    public static int create(BillMaster obj) {
         return objDAO.create(obj);
     }
 
-    public static boolean updateStatus(BillMaster obj) {
+    public static int updateStatus(BillMaster obj) {
         return objDAO.updateStatus(obj);
     }
 
-    public static boolean updateComment(BillMaster obj) {
+    public static int updateComment(BillMaster obj) {
         return objDAO.updateComment(obj);
     }
 
-    public static boolean delete(BillMaster obj) {
+    public static int delete(BillMaster obj) {
         return objDAO.delete(obj);
     }
 }

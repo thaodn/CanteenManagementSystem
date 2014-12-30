@@ -13,27 +13,29 @@ public class EmployeeMaster {
 
     private int employeeId;
     private int departmentId;
-    private String username;
+    private String userName;
     private String password;
     private String fullName;
     private String address;
     private String phone;
     private String email;
     private int status;
+    private int role;
 
     public EmployeeMaster() {
     }
 
-    public EmployeeMaster(int employeeId, int departmentId, String username, String password, String fullName, String address, String phone, String email, int status) {
+    public EmployeeMaster(int employeeId, int departmentId, String userName, String password, String fullName, String address, String phone, String email, int status, int role) {
         this.employeeId = employeeId;
         this.departmentId = departmentId;
-        this.username = username;
+        this.userName = userName;
         this.password = password;
         this.fullName = fullName;
         this.address = address;
         this.phone = phone;
         this.email = email;
         this.status = status;
+        this.role = role;
     }
 
     public int getEmployeeId() {
@@ -52,12 +54,12 @@ public class EmployeeMaster {
         this.departmentId = departmentId;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {
@@ -106,6 +108,14 @@ public class EmployeeMaster {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public int getRole() {
+        return role;
+    }
+
+    public void setRole(int role) {
+        this.role = role;
     }
 
 }
