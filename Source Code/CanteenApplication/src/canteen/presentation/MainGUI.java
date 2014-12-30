@@ -28,11 +28,11 @@ public class MainGUI extends javax.swing.JFrame {
 
         // Add LoginPanel
         pnlLogin = new LoginPanel();
-        tpnMainUI.addTab(null, new ImageIcon("images/icon/home_icon.png"), pnlLogin);
+        tpnMainUI.addTab(null, new ImageIcon("images/icons/home_icon.png"), pnlLogin);
 
         // Add BillPannel
         pnlBill = new BillPanel();
-        tpnMainUI.addTab(null, new ImageIcon("images/icon/product_icon.png"), pnlBill);
+        tpnMainUI.addTab(null, new ImageIcon("images/icons/product_icon.png"), pnlBill);
     }
 
     /**
