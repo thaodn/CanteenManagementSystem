@@ -26,13 +26,9 @@ public class MainGUI extends javax.swing.JFrame {
         Session.employee = new EmployeeMaster();
         Session.employee.setRole(1);
 
-        // Add LoginPanel
-        pnlLogin = new LoginPanel();
-        tpnMainUI.addTab(null, new ImageIcon("images/icons/home_icon.png"), pnlLogin);
-
-        // Add BillPannel
-        pnlBill = new BillPanel();
-        tpnMainUI.addTab(null, new ImageIcon("images/icons/product_icon.png"), pnlBill);
+        // Add Tab
+        addTabPanel(1);
+        addTabPanel(2);
     }
 
     /**
@@ -45,11 +41,21 @@ public class MainGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         tpnMainUI = new javax.swing.JTabbedPane();
+        mbrMenu = new javax.swing.JMenuBar();
+        mnuSystem = new javax.swing.JMenu();
+        mniForgot = new javax.swing.JMenuItem();
+        mniLogout = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        mniExit = new javax.swing.JMenuItem();
+        mnuAbout = new javax.swing.JMenu();
+        mniHelp = new javax.swing.JMenuItem();
+        jSeparator2 = new javax.swing.JPopupMenu.Separator();
+        mniAbout = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Canteen Management System");
         setName("frmMainGui"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(920, 680));
+        setResizable(false);
 
         tpnMainUI.setToolTipText("");
         tpnMainUI.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -58,16 +64,59 @@ public class MainGUI extends javax.swing.JFrame {
             }
         });
 
+        mnuSystem.setMnemonic('S');
+        mnuSystem.setLabel("System");
+
+        mniForgot.setMnemonic('F');
+        mniForgot.setText("Forgot password");
+        mnuSystem.add(mniForgot);
+
+        mniLogout.setMnemonic('L');
+        mniLogout.setText("Logout");
+        mnuSystem.add(mniLogout);
+        mnuSystem.add(jSeparator1);
+
+        mniExit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.ALT_MASK));
+        mniExit.setMnemonic('E');
+        mniExit.setText("Exit");
+        mniExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniExitActionPerformed(evt);
+            }
+        });
+        mnuSystem.add(mniExit);
+
+        mbrMenu.add(mnuSystem);
+
+        mnuAbout.setMnemonic('A');
+        mnuAbout.setText("About");
+
+        mniHelp.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
+        mniHelp.setMnemonic('H');
+        mniHelp.setText("Help");
+        mnuAbout.add(mniHelp);
+        mnuAbout.add(jSeparator2);
+
+        mniAbout.setMnemonic('A');
+        mniAbout.setText("About Us");
+        mnuAbout.add(mniAbout);
+
+        mbrMenu.add(mnuAbout);
+
+        setJMenuBar(mbrMenu);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tpnMainUI, javax.swing.GroupLayout.DEFAULT_SIZE, 920, Short.MAX_VALUE)
+            .addComponent(tpnMainUI, javax.swing.GroupLayout.PREFERRED_SIZE, 920, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tpnMainUI, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE)
+            .addComponent(tpnMainUI, javax.swing.GroupLayout.PREFERRED_SIZE, 659, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
+
+        tpnMainUI.getAccessibleContext().setAccessibleName("tabMain");
 
         pack();
         setLocationRelativeTo(null);
@@ -75,9 +124,21 @@ public class MainGUI extends javax.swing.JFrame {
 
     private void tpnMainUIStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tpnMainUIStateChanged
         // TODO add your handling code here:
-        JTabbedPane sourceTabbedPane = (JTabbedPane) evt.getSource();
-        int index = sourceTabbedPane.getSelectedIndex();
+        JTabbedPane tpnPane = (JTabbedPane) evt.getSource();
+        int index = tpnPane.getSelectedIndex();
+        System.out.println(index);
+        String title = tpnPane.getTitleAt(index);
+        if (title.equals("Bill")) {
+            System.out.println("Bill");
+            pnlBillPanel.revalidate();
+            pnlBillPanel.repaint();
+        }
     }//GEN-LAST:event_tpnMainUIStateChanged
+
+    private void mniExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniExitActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_mniExitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -115,11 +176,40 @@ public class MainGUI extends javax.swing.JFrame {
         });
     }
 
+    // Method
+    private void addTabPanel(int index) {
+        switch (index) {
+            case 1:
+                pnlLoginPanel = new LoginPanel();
+                imageIcon = new ImageIcon(getClass().getResource("/canteen/presentation/images/icon-login.png"));
+                tpnMainUI.insertTab("Login", imageIcon, pnlLoginPanel, "Login", tpnMainUI.getTabCount());
+                break;
+            case 2:
+                pnlBillPanel = new BillPanel();
+                imageIcon = new ImageIcon(getClass().getResource("/canteen/presentation/images/icon-login.png"));
+                tpnMainUI.insertTab("Bill", imageIcon, pnlBillPanel, "Bill", tpnMainUI.getTabCount());
+                break;
+            default:
+                throw new AssertionError();
+        }
+    }
+
     // Variables declaration
-    private LoginPanel pnlLogin;
-    private BillPanel pnlBill;
+    private ImageIcon imageIcon;
+    private LoginPanel pnlLoginPanel;
+    private BillPanel pnlBillPanel;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JPopupMenu.Separator jSeparator2;
+    private javax.swing.JMenuBar mbrMenu;
+    private javax.swing.JMenuItem mniAbout;
+    private javax.swing.JMenuItem mniExit;
+    private javax.swing.JMenuItem mniForgot;
+    private javax.swing.JMenuItem mniHelp;
+    private javax.swing.JMenuItem mniLogout;
+    private javax.swing.JMenu mnuAbout;
+    private javax.swing.JMenu mnuSystem;
     private javax.swing.JTabbedPane tpnMainUI;
     // End of variables declaration//GEN-END:variables
 }

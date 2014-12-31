@@ -68,7 +68,7 @@ public class BillPanel extends javax.swing.JPanel {
         scpAllBill = new javax.swing.JScrollPane();
         tblAllBill = new javax.swing.JTable();
 
-        setPreferredSize(new java.awt.Dimension(920, 680));
+        setPreferredSize(new java.awt.Dimension(920, 659));
 
         lblTitle.setFont(new java.awt.Font("Tahoma", 0, 25)); // NOI18N
         lblTitle.setForeground(new java.awt.Color(204, 102, 255));
@@ -347,7 +347,7 @@ public class BillPanel extends javax.swing.JPanel {
         );
         pnlAllBillLayout.setVerticalGroup(
             pnlAllBillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scpAllBill, javax.swing.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
+            .addComponent(scpAllBill, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -365,7 +365,7 @@ public class BillPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlBillDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlAllBill, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE))
+                .addComponent(pnlAllBill, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

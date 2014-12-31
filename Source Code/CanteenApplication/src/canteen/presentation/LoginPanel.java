@@ -27,21 +27,28 @@ public class LoginPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setPreferredSize(new java.awt.Dimension(920, 680));
+        lblBanner = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(200, 228, 227));
+        setForeground(new java.awt.Color(80, 143, 145));
+        setPreferredSize(new java.awt.Dimension(920, 659));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 920, Short.MAX_VALUE)
+            .addComponent(lblBanner, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 680, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(lblBanner)
+                .addGap(0, 659, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel lblBanner;
     // End of variables declaration//GEN-END:variables
 }
